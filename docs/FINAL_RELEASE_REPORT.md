@@ -73,7 +73,8 @@ Total: 23 passed in 13.71 seconds
 
 - **Target Repository:** `https://github.com/Hemanth0707/SmartPark-AI`
 - **Active Branch:** `main`
-- **Commit Message:** `feat: publish production-ready SmartPark AI parking occupancy system`
+- **Commit Hash:** `c0f1ac7`
+- **Commit Message:** `feat: publish production-ready SmartPark AI parking occupancy system` (with `docs: update README with verified cross-camera metrics, live URL and GitHub links`)
 - **Repository Visibility:** Public (accessible to recruiters, hiring managers, and interviewers).
 
 ---
