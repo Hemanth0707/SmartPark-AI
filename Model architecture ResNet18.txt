@@ -1,0 +1,17 @@
+CNRPark images (150×150)
+        ↓
+Resize to 224×224
+        ↓
+Data augmentation
+        ↓
+Pretrained ResNet18
+        ↓
+Frozen convolutional layers
+        ↓
+Final Fully Connected (FC) layer
+        ↓
+2 classes
+   ┌───────────┐
+   │   BUSY    │
+   │   FREE    │
+   └───────────┘

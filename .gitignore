@@ -1,0 +1,88 @@
+# ==========================================
+# Virtual Environments & Packages (Critical: >1.5 GB)
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# ==========================================
+# Python Bytecode & Optimization Caches
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ==========================================
+# Testing & Type Checking
+# ==========================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ==========================================
+# Frameworks, Runs & Ultralytics Detections
+# ==========================================
+runs/
+.streamlit/secrets.toml
+
+# ==========================================
+# Large Datasets & Media
+# (Raw datasets should be downloaded using docs/DATASET_DOCUMENTATION.md)
+# ==========================================
+CNRPark-Patches-150x150/
+dataset/
+*.mp4
+*.avi
+*.mov
+outputs/temp*
+outputs/error_analysis/
+outputs/slot_crops/
+bus.jpg
+
+# ==========================================
+# Redundant Weights & Checkpoints
+# (Keep models/parking_classifier.pth and yolo26s.pt only)
+# ==========================================
+models/*_finetuned.pth
+models/*_best.pth
+/parking_classifier.pth
+yolo26n.pt
+
+# ==========================================
+# OS & IDE metadata
+# ==========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# Environment Variables
+# ==========================================
+.env
+.env.local

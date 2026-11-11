@@ -1,0 +1,54 @@
+{
+    "mode": "frozen_backbone",
+    "epochs_trained": 3,
+    "total_training_time_seconds": 381.44,
+    "best_val_loss": 0.3499,
+    "final_metrics": {
+        "accuracy": 0.89,
+        "precision": 0.898,
+        "recall": 0.89,
+        "f1_score": 0.8847,
+        "confusion_matrix": [
+            [
+                663,
+                10
+            ],
+            [
+                100,
+                227
+            ]
+        ],
+        "total_samples": 1000,
+        "class_names": [
+            "busy",
+            "free"
+        ]
+    },
+    "history": {
+        "train_loss": [
+            0.4021,
+            0.2492,
+            0.2169
+        ],
+        "train_acc": [
+            83.24,
+            90.2,
+            91.44
+        ],
+        "val_loss": [
+            0.4868,
+            0.3937,
+            0.3499
+        ],
+        "val_acc": [
+            83.6,
+            87.4,
+            89.0
+        ],
+        "val_f1": [
+            0.8188,
+            0.8658,
+            0.8847
+        ]
+    }
+}

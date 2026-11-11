@@ -1,0 +1,50 @@
+{
+    "yolo_only": {
+        "mode": "yolo_only",
+        "average_latency_ms": 875.11,
+        "std_latency_ms": 5.67,
+        "min_latency_ms": 868.82,
+        "max_latency_ms": 884.61,
+        "fps": 1.14,
+        "yolo_time_ms": 873.64,
+        "resnet_time_ms": 0.0,
+        "matching_time_ms": 1.26,
+        "memory_usage_mb": 634.79,
+        "occupied_detected": 4,
+        "free_detected": 18,
+        "uncertain_detected": 0,
+        "occupancy_rate_pct": 18.18
+    },
+    "resnet_only": {
+        "mode": "resnet_only",
+        "average_latency_ms": 512.34,
+        "std_latency_ms": 11.94,
+        "min_latency_ms": 498.63,
+        "max_latency_ms": 529.93,
+        "fps": 1.95,
+        "yolo_time_ms": 0.0,
+        "resnet_time_ms": 503.64,
+        "matching_time_ms": 0.0,
+        "memory_usage_mb": 633.02,
+        "occupied_detected": 16,
+        "free_detected": 4,
+        "uncertain_detected": 2,
+        "occupancy_rate_pct": 72.73
+    },
+    "hybrid": {
+        "mode": "hybrid",
+        "average_latency_ms": 1513.71,
+        "std_latency_ms": 70.16,
+        "min_latency_ms": 1399.17,
+        "max_latency_ms": 1587.28,
+        "fps": 0.66,
+        "yolo_time_ms": 956.86,
+        "resnet_time_ms": 551.6,
+        "matching_time_ms": 1.76,
+        "memory_usage_mb": 628.53,
+        "occupied_detected": 15,
+        "free_detected": 5,
+        "uncertain_detected": 2,
+        "occupancy_rate_pct": 68.18
+    }
+}
