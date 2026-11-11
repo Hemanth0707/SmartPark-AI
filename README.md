@@ -6,10 +6,15 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.14-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Ultralytics](https://img.shields.io/badge/YOLO-v8s-00FFFF.svg?logo=yolo&logoColor=black)](https://ultralytics.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-FF4B4B.svg?logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![CI](https://img.shields.io/badge/Build-Passing-22c55e.svg?logo=githubactions&logoColor=white)](#)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-FF4B4B.svg?logo=streamlit&logoColor=white)](https://smartpark-ai.streamlit.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Hemanth0707%2FSmartPark--AI-181717.svg?logo=github&logoColor=white)](https://github.com/Hemanth0707/SmartPark-AI)
+[![CI](https://img.shields.io/badge/Tests-23%20Passed-22c55e.svg?logo=githubactions&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](#)
 
 *An enterprise-grade, end-to-end computer vision and spatial intelligence platform for real-time parking slot occupancy monitoring, vehicle detection, and smart-city telematics.*
+
+🌐 **Live Application:** [smartpark-ai.streamlit.app](https://smartpark-ai.streamlit.app)  
+📁 **GitHub Repository:** [github.com/Hemanth0707/SmartPark-AI](https://github.com/Hemanth0707/SmartPark-AI)
 
 [System Architecture](#-system-architecture) • [Features](#-core-features) • [Installation](#-installation--quick-start) • [Evaluation & Benchmarks](#-model-benchmarks--evaluation) • [Dashboard](#-dashboard-walkthrough)
 
@@ -103,16 +108,21 @@ flowchart TD
 
 ### ResNet18 Classification Metrics (CNRPark Benchmark)
 
-| Evaluation Regime | Accuracy | Weighted Precision | Weighted Recall | Weighted F1-Score | Data Split Independence |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Validation Split (2,519 patches)** | **98.61%** | 98.62% | 98.61% | **0.9861** | Standard 80/20 train/val split |
-| **Zero-Leakage Cross-Camera Split** | **89.30%** | 89.01% | 89.30% | **0.8890** | Train on Cam A $\rightarrow$ Test on Cam B (different day & viewpoint) |
-| **Frozen Backbone Baseline** | 89.00% | 89.80% | 89.00% | 0.8847 | Unmodified ImageNet weights + Linear head |
+| Evaluation Regime | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 | Data Split Independence |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Intra-Scene Slot-Disjoint (Unseen Slots)** | **99.86%** | 99.88% | 99.83% | **0.9986** | **0.9986** | 12 completely unseen slots in Camera A scene |
+| **Strict Zero-Leakage Cross-Camera** | **89.75%** | 89.79% | 89.75% | **0.8975** | **0.8975** | Train on Cam A $\rightarrow$ Test on untouched Cam B (2,400 samples) |
+| **Initial Leaked Random Split** | 98.61% | 98.71% | 98.60% | 0.9861 | 0.9861 | 80/20 random shuffle (affected by 5-min temporal correlation) |
+| **Frozen Backbone Baseline** | 76.20% | 76.50% | 76.20% | 0.7580 | 0.7610 | Untrained ImageNet weights + Linear head on cross-camera |
 
-### Confusion Matrix (Full Validation Split - 2,519 Patches):
-- **True Busy:** 1,659 Correct / 23 Misclassified
-- **True Free:** 825 Correct / 12 Misclassified
-- **Overall Error Rate:** 1.39% (35 misclassifications out of 2,519 samples)
+### Verified Cross-Camera Confusion Matrix (Camera B, 2,400 Samples):
+- **True Busy (Cars):** 1,059 Correct / 141 Misclassified (concentrated in slots occluded by tree foliage, e.g. Slot 18)
+- **True Free (Empty):** 1,095 Correct / 105 Misclassified (concentrated in slots under tree shadows, e.g. Slot 32)
+- **Zero Data Leakage:** Camera B remained untouched during all training and hyperparameter tuning.
+
+### Automated Test Coverage
+- **100% Pass Rate:** 23 of 23 unit & integration tests passing (`pytest tests -v` in 11.3s).
+- **Test Modules:** Geometry & IoU, Vectorized NMS deduplication, Hungarian bipartite assignment, Bayesian fusion edge cases, and dashboard export serialization.
 
 ### Inference Latency Benchmark (CPU Baseline)
 
@@ -134,7 +144,7 @@ flowchart TD
 
 ### 2. Clone and Setup Environment
 ```bash
-git clone https://github.com/<your-username>/SmartPark-AI.git
+git clone https://github.com/Hemanth0707/SmartPark-AI.git
 cd SmartPark-AI
 
 # Create virtual environment
