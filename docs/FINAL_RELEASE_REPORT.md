@@ -13,7 +13,7 @@ A comprehensive technical audit was executed across all components of **SmartPar
   - Center-point failure modes eliminated by implementing slot intersection coverage $\frac{\text{Area}(V \cap S)}{\text{Area}(S)}$ and IoU.
   - Multi-stall double counting eliminated via 1-to-1 minimum-cost bipartite matching (Hungarian algorithm).
   - Bayesian consensus engine verified for combining spatial overlap and patch surface probabilities into confirmed `FREE`, `OCCUPIED`, or `UNCERTAIN` states.
-- **Full-Stack Application:** All six Streamlit pages ([app.py](file:///c:/Desktop/PROJECTS/ParkSense-AI/app.py)), temporal video subsampling, interactive slot patch inspector, and CSV/JSON export serializations verified without mock fallback data.
+- **Full-Stack Application:** All six Streamlit pages (`app.py`), temporal video subsampling, interactive slot patch inspector, and CSV/JSON export serializations verified without mock fallback data.
 
 ---
 
@@ -22,9 +22,10 @@ A comprehensive technical audit was executed across all components of **SmartPar
 ### Strict Zero-Data-Leakage Benchmark Results:
 
 | Model & Split | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 | Evaluation Condition |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
 | **ResNet18 (Camera A Unseen Slots)** | **99.86%** | **0.9988** | **0.9983** | **0.9986** | **0.9986** | Evaluated on 12 disjoint, held-out parking slots in Camera A scene. |
 | **ResNet18 (Camera B Cross-Camera)** | **89.75%** | **0.8979** | **0.8975** | **0.8975** | **0.8975** | Strict zero-leakage cross-camera evaluation on untouched Camera B (2,400 samples). |
+| **Initial Leaked Random Split** | 98.61% | 0.9871 | 0.9860 | 0.9861 | 0.9861 | Correlated by 5-minute video captures (leaked baseline). |
 
 ### Camera B Confusion Matrix (2,400 Balanced Test Samples):
 ```
@@ -52,7 +53,7 @@ All **23 unit and integration test cases** passed with 100% success rate:
 tests/test_dashboard_components.py (4 tests) - PASSED
 tests/test_geometry_and_nms.py     (10 tests) - PASSED
 tests/test_occupancy_pipeline.py   (9 tests) - PASSED
-Total: 23 passed in 13.71 seconds
+Total: 23 passed in 10.75 seconds
 ```
 
 ---
@@ -73,18 +74,19 @@ Total: 23 passed in 13.71 seconds
 
 - **Target Repository:** `https://github.com/Hemanth0707/SmartPark-AI`
 - **Active Branch:** `main`
-- **Commit Hash:** `c0f1ac7`
-- **Commit Message:** `feat: publish production-ready SmartPark AI parking occupancy system` (with `docs: update README with verified cross-camera metrics, live URL and GitHub links`)
-- **Repository Visibility:** Public (accessible to recruiters, hiring managers, and interviewers).
+- **Verified Remote Commit:** `431530b`
+- **Local Ready Commit:** `5ff53f1` (`feat(dashboard): add zero-data-leakage generalization table to Model Performance page`)
+- **Repository Visibility:** Public (HTTP 200 unauthenticated response on `https://github.com/Hemanth0707/SmartPark-AI`).
 
 ---
 
-## 6. Cloud Deployment Architecture
+## 6. Cloud Deployment Architecture & Status
 
-- **Platform:** Streamlit Community Cloud (connected directly to GitHub repository).
-- **Target URL:** `https://smartpark-ai.streamlit.app` (or default Streamlit domain).
+- **Platform:** Streamlit Community Cloud
+- **Application URL:** `https://smartpark-ai.streamlit.app`
+- **Current Live Status:** Active (HTTP 303 redirect to viewer session/login).
 - **Runtime Environment:** Python 3.11, Debian Linux.
-- **Headless Linux Dependencies:** Configured in `packages.txt` (`libgl1`, `libglib2.0-0`) to eliminate OpenCV missing shared-object library errors.
+- **Headless Linux Dependencies:** Configured in `packages.txt` (`libgl1`, `libglib2.0-0`) eliminating OpenCV Linux missing shared-object errors.
 - **Headless Server Settings:** Configured in `.streamlit/config.toml` (`headless = true`, `maxUploadSize = 200MB`, `enableCORS = false`).
 - **Resource Footprint:** ~630 MB RSS memory footprint; fits comfortably within Streamlit Cloud's 1 GB container RAM allocation using `@st.cache_resource`.
 
